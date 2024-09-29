@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Scholarship Portal</title>
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+header {
+    background-color: #004d99;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.main-header h1 {
+    font-size: 2em;
+    margin: 0.2em;
+}
+
+.main-header h2, .main-header h3 {
+    margin: 0.2em;
+    font-weight: 300;
+}
+
+.nav-top {
+    display: flex;
+    justify-content: space-between;
+    background-color: #003366;
+    padding: 0.5em;
+    font-size: 0.9em;
+}
+
+.nav-top li {
+    list-style: none;
+    display: inline;
+}
+
+.nav-top li a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.nav-top li a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content */
+.main-content {
+    display: flex;
+    justify-content: center;
+    padding: 2em;
+}
+
+.center-content {
+    width: 50%;
+    padding: 2em;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h3 {
+    color: #004d99;
+    margin-bottom: 1em;
+}
+
+.login-btn, .back-btn {
+    display: block;
+    padding: 1em;
+    margin: 1em 0;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1em;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover, .back-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Form Styles */
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form label {
+    margin-top: 1em;
+    font-weight: bold;
+}
+
+.form input {
+    width: 100%;
+    padding: 0.5em;
+    margin-top: 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form button {
+    margin-top: 1.5em;
+}
+
+/* Footer */
+footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-top">
+                <li><a href="#main-content">Skip To Main Content</a></li>
+                <li><a href="#navigation">Skip To Navigation</a></li>
+                <li><a href="/home">Post Matric Home</a></li>
+                <li><a href="#">A+</a></li>
+                <li><a href="#">A-</a></li>
+                <li><a href="#">मराठी</a></li>
+            </ul>
+        </nav>
+
+        <div class="main-header">
+            <h1>MahaOnline</h1>
+            <h2>Government of Maharashtra</h2>
+            <h3>DBT - Direct Benefit Transfer</h3>
+        </div>
+    </header>
+
+    <main id="main-content" class="main-content">
+        <div class="center-content">
+            <h3>Sign Up</h3>
+            <form id="signup-form" class="form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+                
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+                
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+                
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state" required>
+                
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" required>
+                
+                <label for="pin">Pin Code:</label>
+                <input type="text" id="pin" name="pin" required>
+                
+                <button type="submit" class="login-btn">Submit</button>
+            </form>
+            <button onclick="window.location.href='/home'" class="back-btn">Back to Main Page</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Government of Maharashtra. All Rights Reserved.</p>
+    </footer>
+    <
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const formData = {
+                username: document.getElementById('username').value,
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                confirmPassword: document.getElementById('confirm-password').value,
+                phone: document.getElementById('phone').value,
+                dob: document.getElementById('dob').value,
+                states: document.getElementById('state').value,
+                city: document.getElementById('city').value,
+                pin: document.getElementById('pin').value
+            };
+
+            // Basic client-side validation
+            if (formData.password !== formData.confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            // Send data to the server
+            fetch('/api/candidate/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(async response => {
+                console.log(await response);
+                if(await response.status === 200){
+                    alert('Registration successful!');
+                    window.location.href = '/login';
+                }
+                else{
+                    alert('Registration failed: ' + response.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        });
+    </script>
+</body>
+</html>

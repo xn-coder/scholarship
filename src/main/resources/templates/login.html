@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarship Login</title>
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+header {
+    background-color: #004d99;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.main-header h1 {
+    font-size: 2em;
+    margin: 0.2em;
+}
+
+.main-header h2, .main-header h3 {
+    margin: 0.2em;
+    font-weight: 300;
+}
+
+.nav-top {
+    display: flex;
+    justify-content: space-between;
+    background-color: #003366;
+    padding: 0.5em;
+    font-size: 0.9em;
+}
+
+.nav-top li {
+    list-style: none;
+    display: inline;
+}
+
+.nav-top li a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.nav-top li a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content */
+.main-content {
+    display: flex;
+    justify-content: center;
+    padding: 2em;
+}
+
+.center-content {
+    width: 50%;
+    padding: 2em;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h3 {
+    color: #004d99;
+    margin-bottom: 1em;
+}
+
+.login-btn, .forgot-btn, .back-btn {
+    display: block;
+    padding: 1em;
+    margin: 1em 0;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1em;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover, .forgot-btn:hover, .back-btn:hover {
+    background-color: #0056b3;
+}
+
+.forgot-btn {
+    background-color: #6c757d;
+}
+
+.forgot-btn:hover {
+    background-color: #555;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1em;
+    text-align: left;
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Footer */
+footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-top">
+                <li><a href="#main-content">Skip To Main Content</a></li>
+                <li><a href="#navigation">Skip To Navigation</a></li>
+                <li><a href="/home">Post Matric Home</a></li>
+                <li><a href="#">A+</a></li>
+                <li><a href="#">A-</a></li>
+                <li><a href="#">मराठी</a></li>
+            </ul>
+        </nav>
+
+        <div class="main-header">
+            <h1>MahaOnline</h1>
+            <h2>Government of Maharashtra</h2>
+            <h3>DBT - Direct Benefit Transfer</h3>
+        </div>
+    </header>
+
+    <main id="main-content" class="main-content">
+        <div class="center-content">
+            <h3>Login</h3>
+            <form class="login-form">
+                <div class="form-group">
+                    <label for="email">Enter your Email</label>
+                    <input type="text" id="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Enter your password</label>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="login-btn" id="login-btn">Login Here</button>
+                    <button type="button" class="forgot-btn" id="forgot-password">Forgot Password</button>
+                    <button type="button" class="forgot-btn" id="forgot-username">Forgot Username</button>
+                </div>
+            </form>
+            <button onclick="window.location.href='/home'" class="back-btn">Back to Main Page</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Government of Maharashtra. All Rights Reserved.</p>
+    </footer>
+    <script>
+        document.getElementById('forgot-password').addEventListener('click', function() {
+            alert("Redirecting to forgot password page...");
+            window.location.href = 'forgot-password.html'; // Replace with the actual link to forgot password page
+        });
+
+        document.getElementById('forgot-username').addEventListener('click', function() {
+            alert("Redirecting to forgot username page...");
+            window.location.href = 'forgot-username.html';
+        });
+
+        document.querySelector('.login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const form = {
+                email: email,
+                password: password
+            };
+
+            fetch('api/candidate/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(form)
+            })
+            .then(async response => {
+                if(await response.status == 200) {
+                    localStorage.setItem("email", email);
+                    localStorage.setItem("password", password);
+                    window.location.href = "/dashboard"
+                } else {
+                    alert(await response.text())
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        });
+    </script>
+
+
+</body>
+</html>

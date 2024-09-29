@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarship Portal</title>
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+header {
+    background-color: #004d99;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.main-header h1 {
+    font-size: 2em;
+    margin: 0.2em;
+}
+
+.main-header h2, .main-header h3 {
+    margin: 0.2em;
+    font-weight: 300;
+}
+
+.nav-top {
+    display: flex;
+    justify-content: space-between;
+    background-color: #003366;
+    padding: 0.5em;
+    font-size: 0.9em;
+}
+
+.nav-top li {
+    list-style: none;
+    display: inline;
+}
+
+.nav-top li a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.nav-top li a:hover {
+    text-decoration: underline;
+}
+
+/* Navigation Section */
+.nav-section {
+    background-color: #e6e6e6;
+    padding: 1em;
+}
+
+.nav-left {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-left li a {
+    display: block;
+    padding: 1em;
+    text-decoration: none;
+    color: #004d99;
+}
+
+.nav-left li a:hover {
+    background-color: #004d99;
+    color: white;
+}
+
+/* Main Content */
+.main-content {
+    display: flex;
+    padding: 2em;
+    justify-content: space-between;
+}
+
+.left-sidebar, .right-sidebar {
+    width: 20%;
+    padding: 1em;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+}
+
+.center-content {
+    width: 50%;
+    padding: 2em;
+    text-align: center;
+}
+
+h3 {
+    color: #004d99;
+    margin-bottom: 1em;
+}
+
+.login-btn {
+    display: block;
+    padding: 1em;
+    margin: 1em 0;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1em;
+}
+
+.login-btn:hover {
+    background-color: #0056b3;
+}
+
+.right-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.right-sidebar ul li a {
+    text-decoration: none;
+    color: #004d99;
+    display: block;
+    padding: 1em;
+}
+
+.right-sidebar ul li a:hover {
+    background-color: #004d99;
+    color: white;
+}
+
+/* Footer */
+footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-top">
+                <li><a href="#main-content">Skip To Main Content</a></li>
+                <li><a href="#navigation">Skip To Navigation</a></li>
+                <li><a href="#home">Post Matric Home</a></li>
+                <li><a href="#">A+</a></li>
+                <li><a href="#">A-</a></li>
+                <li><a href="#">मराठी</a></li>
+            </ul>
+        </nav>
+
+        <div class="main-header">
+            <h1>ScholarSupport</h1>
+            <h2>Centralised Support of India</h2>
+            <h3>DBT - Direct Benefit Transfer</h3>
+        </div>
+    </header>
+
+    <marquee behavior="scroll" direction="left" style="background-color: #ffcc00; color: #333; padding: 1em; font-size: 1.2em;">
+        New Scholarship Announced: Apply by 31st December 2024. | Scholarship for Underprivileged Students: Deadline 15th January 2025.
+    </marquee>
+
+    <main id="main-content" class="main-content">
+        <div class="left-sidebar">
+            <h3>Guidelines PDF</h3>
+            <a href="guidelines.pdf" target="_blank">Download Guidelines</a>
+        </div>
+
+        <div class="center-content">
+            <h3>Login</h3>
+            <button id="new-user-btn" class="login-btn">New Application User</button>
+            <button id="applicant-login-btn" class="login-btn">Application Login</button>
+        </div>
+
+        <div class="right-sidebar">
+            <ul>
+                <li><a href="#" id="new-user">1. New Application User</a></li>
+                <li><a href="#" id="applicant-login">2. Application Login</a></li>
+                <li><a href="#">3. Find Eligibility Scheme</a></li>
+                <li><a href="#">4. Institute / Dept / DDO Login</a></li>
+                <li><a href="#">5. Grievance / Suggestions</a></li>
+                <li><a href="#">6. User Manuals</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <section id="navigation" class="nav-section">
+        <nav>
+            <ul class="nav-left">
+                <li><a href="#">How to Apply Online?</a></li>
+                <li><a href="#">Benefit Schemes</a></li>
+                <li><a href="#">Post Matric Scholarship</a></li>
+                <li><a href="#">Pre Matric Scholarship</a></li>
+                <li><a href="#">Pension Schemes</a></li>
+                <li><a href="#">Farmer Schemes</a></li>
+                <li><a href="#">Labour Schemes</a></li>
+                <li><a href="#">Special Assistance Schemes</a></li>
+            </ul>
+        </nav>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Government of Maharashtra. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('new-user-btn').addEventListener('click', function() {
+            window.location.href = '/register';
+        });
+
+        document.getElementById('applicant-login-btn').addEventListener('click', function() {
+            window.location.href = '/login';
+        });
+
+        document.getElementById('new-user').addEventListener('click', function() {
+            window.location.href = '/register';
+        });
+
+        document.getElementById('applicant-login').addEventListener('click', function() {
+            window.location.href = '/login';
+        });
+    </script>
+</body>
+</html>

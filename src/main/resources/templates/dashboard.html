@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Scholarship Dashboard</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #0073e6;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.dashboard {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard h2 {
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.dashboard p {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.card p.description {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+form {
+    text-align: left;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #005bb5;
+}
+
+footer {
+    background-color: #0073e6;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+    </style>
+    
+    <style>
+        .modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%; 
+  background-color: rgba(0, 0, 0, 0.5); 
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto; 
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  color: #aaa;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+/* Modal Button */
+.modal-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.modal-btn:hover {
+  background-color: #0056b3;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Centralised Scholarship Portal</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Scholarships</a></li>
+                <li><a href="#">Application Status</a></li>
+                <li><a href="#">Help & Support</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="dashboard">
+        <h2>Welcome, <span id="userName"></span></h2>
+        <p>Here are the scholarships available to you:</p>
+
+        <div class="cards">
+            <!-- Card 1: State-based Eligibility -->
+            <div class="card" id="card1">
+                <h3 style="color: #2c3e50; font-size: 22px; font-weight: 600; margin-bottom: 15px;" >State Based Scholarship</h3>
+                <p class="description" style="font-size: 15px; color: #7f8c8d; line-height: 1.6;" >Empower your education locally with a State-Based Scholarship tailored to support regional academic talent.</p>
+                <button onclick="validateState()"  style="background-color: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 5px; font-size: 15px; font-weight: 500; cursor: pointer; transition: background-color 0.3s ease;" >Apply Now</button>
+            </div>
+
+            <!-- Card 3: Age-Based Eligibility -->
+            <div class="card" id="card3"  style="background-color: #ffffff; padding: 20px; border-radius: 8px; border: 1px solid #e0e0e0; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);">
+                <h3 style="color: #2c3e50; font-size: 22px; font-weight: 600; margin-bottom: 15px;">National Level Scholarship</h3>
+                <p class="description" style="font-size: 15px; color: #7f8c8d; line-height: 1.6;">Unlock nationwide opportunities with a National Level Scholarship and achieve academic success on a larger scale.</p>
+                <button onclick="showIneligibilityMessage()"  style="background-color: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 5px; font-size: 15px; font-weight: 500; cursor: pointer; transition: background-color 0.3s ease;" >Apply Now</button>
+            </div>
+
+            <!-- Card 3: Age-Based Eligibility -->
+            <div class="card" id="card3"  style="background-color: #ffffff; padding: 20px; border-radius: 8px; border: 1px solid #e0e0e0; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);">
+                <h3 style="color: #2c3e50; font-size: 22px; font-weight: 600; margin-bottom: 15px;">Pre Board Scholarship</h3>
+                <p class="description" style="font-size: 15px; color: #7f8c8d; line-height: 1.6;">Explore our exclusive opportunities before applying for a Merit-Based Scholarship to support your academic growth.</p>
+                <button onclick="validateAge()"  style="background-color: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 5px; font-size: 15px; font-weight: 500; cursor: pointer; transition: background-color 0.3s ease;" >Apply Now</button>
+            </div>
+
+           <!-- Card 4: Merit-Based Scholarship -->
+<!-- Card 4: Merit-Based Scholarship -->
+<div class="card" id="card4" style="background-color: #ffffff; padding: 20px; border-radius: 8px; border: 1px solid #e0e0e0; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);">
+    <h3 style="color: #2c3e50; font-size: 22px; font-weight: 600; margin-bottom: 15px;">Post Board Scholarship</h3>
+    <p style="font-size: 15px; color: #7f8c8d; line-height: 1.6;">
+        Apply for a Merit-Based Scholarship to be rewarded for your academic excellence and dedication.
+    </p>
+    <button onclick="showIneligibilityMessage()" style="background-color: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 5px; font-size: 15px; font-weight: 500; cursor: pointer; transition: background-color 0.3s ease;">
+        Apply Now
+    </button>
+</div>
+
+<div id="ineligibilityModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeIneligibilityMessage()">&times;</span>
+      <h2>Ineligibility Notice</h2>
+      <p>Unfortunately, you are not eligible for this scholarship at this time.</p>
+      <button onclick="closeIneligibilityMessage()" class="modal-btn">Close</button>
+    </div>
+  </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Government Scholarship Portal</p>
+    </footer>
+   <script>
+        const email = localStorage.getItem("email");
+        const password = localStorage.getItem("password");
+        const eligibleState = "Maharashtra";
+        const minAge = 18;
+        const maxAge = 25;
+        let userState;
+        let userAge;
+
+        fetch('api/candidate/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({email: email, password: password})
+            })
+            .then(async response => {
+                if(await response.status == 200) {
+                    const userData = await response.json();
+                    document.getElementById("userName").innerHTML = userData.name;
+                    const userDob = userData.dob;
+                    userState = userData.states;
+                    userAge = calculateAge(new Date(userDob));
+                } else {
+                    alert(await response.text())
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+
+        function calculateAge(dob) {
+            const diffMs = Date.now() - dob.getTime();
+            const ageDt = new Date(diffMs);
+            return Math.abs(ageDt.getUTCFullYear() - 1970);
+        }
+
+function validateState() {
+    if (userState === eligibleState) {
+        window.location.href = "/upload";
+    } else {
+        alert("You are not eligible for this scholarship as you do not belong to the eligible state.");
+    }
+}
+
+function validateAge() {
+    if (userAge >= minAge && userAge <= maxAge) {
+        window.location.href = "/upload";
+    } else {
+        alert("You are not eligible for this scholarship due to age restrictions.");
+    }
+}
+
+function showIneligibilityMessage() {
+    alert("You are not eligible for this scholarship.");
+}
+
+function showIneligibilityMessage() {
+    document.getElementById('ineligibilityModal').style.display = 'block';
+}
+
+function closeIneligibilityMessage() {
+    document.getElementById('ineligibilityModal').style.display = 'none';
+}
+ </script>
+</body>
+</html>
